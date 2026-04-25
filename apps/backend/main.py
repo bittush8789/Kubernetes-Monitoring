@@ -1,3 +1,7 @@
+# File: apps/backend/main.py
+# Description: FastAPI Backend with Prometheus Instrumentation for SRE Golden Signals.
+# Project: Kubernetes Monitoring Stack
+
 from fastapi import FastAPI, Request, Response
 from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
 import time

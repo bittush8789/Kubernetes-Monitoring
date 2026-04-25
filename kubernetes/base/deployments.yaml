@@ -1,3 +1,7 @@
+# File: kubernetes/base/deployments.yaml
+# Description: Core deployments for Backend, PostgreSQL, and Redis with monitoring sidecars.
+# Project: Kubernetes Monitoring Stack
+
 apiVersion: v1
 kind: Namespace
 metadata:

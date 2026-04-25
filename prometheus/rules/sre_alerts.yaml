@@ -1,3 +1,7 @@
+# File: prometheus/rules/sre_alerts.yaml
+# Description: Prometheus Alerting Rules for Application and Infrastructure outages.
+# Project: Kubernetes Monitoring Stack
+
 groups:
 - name: application_alerts
   rules:

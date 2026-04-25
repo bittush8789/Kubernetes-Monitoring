@@ -1,3 +1,7 @@
+# File: terraform/environments/prod/main.tf
+# Description: AWS EKS Cluster and VPC provisioning using Terraform modules.
+# Project: Kubernetes Monitoring Stack
+
 provider "aws" {
   region = "us-east-1"
 }
