@@ -1,0 +1,46 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "SRE Application Golden Signals",
+    "tags": ["sre", "application", "prod"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "title": "Request Rate (RPS)",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+        "targets": [
+          {
+            "expr": "sum(rate(api_requests_total[5m])) by (endpoint)",
+            "legendFormat": "{{endpoint}}"
+          }
+        ]
+      },
+      {
+        "title": "Error Rate (%)",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+        "targets": [
+          {
+            "expr": "sum(rate(api_errors_total[5m])) / sum(rate(api_requests_total[5m])) * 100",
+            "legendFormat": "Error %"
+          }
+        ]
+      },
+      {
+        "title": "P95 Latency (ms)",
+        "type": "timeseries",
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, sum(rate(api_request_duration_seconds_bucket[5m])) by (le)) * 1000",
+            "legendFormat": "P95 Latency"
+          }
+        ]
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 36,
+    "version": 1
+  }
+}
