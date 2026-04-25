@@ -1,4 +1,8 @@
 #!/bin/bash
+# File: scripts/install-monitoring.sh
+# Description: Automated installation script for the entire monitoring stack.
+# Project: Kubernetes Monitoring Stack
+
 
 # Configuration
 NAMESPACE="monitoring"

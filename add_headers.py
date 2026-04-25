@@ -22,18 +22,21 @@ else:
 for file_rel_path, header in files_to_header.items():
     full_path = os.path.join(prefix, file_rel_path)
     if os.path.exists(full_path):
-        with open(full_path, "r") as f:
-            content = f.read()
-        
-        # Only prepend if not already there
-        if not content.startswith("# File:"):
-            with open(full_path, "w") as f:
-                # For shell scripts, keep the shebang at the top
-                if content.startswith("#!"):
-                    lines = content.splitlines()
-                    shebang = lines[0]
-                    rest = "\n".join(lines[1:])
-                    f.write(f"{shebang}\n{header}\n{rest}")
-                else:
-                    f.write(f"{header}\n{content}")
-            print(f"Header added to: {file_rel_path}")
+        try:
+            with open(full_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            
+            # Only prepend if not already there
+            if not content.startswith("# File:"):
+                with open(full_path, "w", encoding="utf-8") as f:
+                    # For shell scripts, keep the shebang at the top
+                    if content.startswith("#!"):
+                        lines = content.splitlines()
+                        shebang = lines[0]
+                        rest = "\n".join(lines[1:])
+                        f.write(f"{shebang}\n{header}\n{rest}")
+                    else:
+                        f.write(f"{header}\n{content}")
+                print(f"Header added to: {file_rel_path}")
+        except Exception as e:
+            print(f"Error processing {file_rel_path}: {e}")
